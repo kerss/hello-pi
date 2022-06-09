@@ -13,7 +13,7 @@ class CANCommunicatie:
         self.canbus = can_library.Bus(interface='socketcan', channel='can0', bitrate=500000)
         
         # PC
-        # self.canbus = can.interface.Bus(bustype='pcan', channel='PCAN_USBBUS1', bitrate=500000)
+        # self.canbus = can_library.interface.Bus(bustype='pcan', channel='PCAN_USBBUS1', bitrate=500000)
 
     def send_msg(self, id, data):
         can_msg = can_library.Message(arbitration_id=id, is_extended_id=False, data=data)
@@ -21,7 +21,7 @@ class CANCommunicatie:
         try:
             self.canbus.send(can_msg)
             print(f"Message sent on {self.canbus.channel_info}")
-        except can.CanError:
+        except can_library.CanError:
             print("Message NOT sent")
 
 
